@@ -1,4 +1,4 @@
-# Nourish — Dazzling Nutritionist React UI
+# Yukthahara — Dazzling Nutritionist React UI
 
 A premium, responsive nutritionist landing page built with React + Vite.
 

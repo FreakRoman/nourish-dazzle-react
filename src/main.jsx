@@ -1,4 +1,6 @@
 import React, { useMemo, useState } from "react";
+import { FaWhatsapp } from "react-icons/fa";
+import Hero3D from "./components/Hero3D";
 import { createRoot } from "react-dom/client";
 import {
   ArrowRight, Check, ChevronDown, CircleCheck, Clock3, Leaf,
@@ -16,7 +18,7 @@ const faqs = [
   ["Do I need to count calories?", "Not necessarily. We use calorie and macro targets only when they make sense for your goal. The system is designed to make healthy choices easier, not turn every meal into math."],
   ["Can you build Indian meal plans?", "Absolutely. Plans can be built around South Indian, North Indian, vegetarian, non-vegetarian, vegan, and mixed preferences — including meals you already love."],
   ["How quickly will I see results?", "Most clients notice better energy and consistency within the first couple of weeks. Body-composition changes depend on your starting point, goal, habits, sleep, and consistency."],
-  ["Is this a crash diet?", "No. Nourish is built around sustainable habits, adequate nutrition, flexibility, and education so your results can continue after the coaching period."]
+  ["Is this a crash diet?", "No. Yukthahara is built around sustainable habits, adequate nutrition, flexibility, and education so your results can continue after the coaching period."]
 ];
 
 function App() {
@@ -49,9 +51,9 @@ function App() {
     <div className="app">
       <div className="noise" />
       <header className="nav">
-        <button className="brand" onClick={() => nav("home")} aria-label="Nourish home">
+        <button className="brand" onClick={() => nav("home")} aria-label="Yukthahara home">
           <span className="brand-mark"><Leaf size={18} /></span>
-          <span>NOURISH<span className="dot">.</span></span>
+          <span>Yukthahara<span className="dot">.</span></span>
         </button>
         <nav className={menuOpen ? "nav-links open" : "nav-links"}>
           <button onClick={() => nav("method")}>Our method</button>
@@ -65,48 +67,59 @@ function App() {
       </header>
 
       <main id="home">
-        <section className="hero">
-          <div className="hero-copy">
-            <div className="eyebrow"><span className="eyebrow-dot" /> PERSONAL NUTRITION, REIMAGINED</div>
-            <h1>Eat better.<br /><em>Feel electric.</em></h1>
-            <p className="hero-sub">A beautifully simple nutrition system built around <strong>your body, your culture, and your real life.</strong></p>
-            <div className="hero-actions">
-              <button className="primary-btn" onClick={() => setModal(true)}>Build my nutrition plan <ArrowRight size={18} /></button>
-              <button className="play-btn" onClick={() => nav("method")}><span><Play size={15} fill="currentColor" /></span> See how it works</button>
-            </div>
-            <div className="micro-proof">
-              <div className="avatar-stack"><span>AR</span><span>SK</span><span>MJ</span><span>+</span></div>
-              <div><div className="stars">★★★★★ <small>4.9/5</small></div><p>Trusted by 2,000+ healthier humans</p></div>
-            </div>
-          </div>
+<section className="hero">
 
-          <div className="hero-art">
-            <div className="orb orb-one" />
-            <div className="orb orb-two" />
-            <div className="food-card">
-              <div className="food-top"><span>TONIGHT'S PLATE</span><span className="tiny-pill">BALANCED</span></div>
-              <div className="plate">
-                <div className="food broccoli" />
-                <div className="food tomato" />
-                <div className="food grains" />
-                <div className="food avocado" />
-                <div className="food protein" />
-              </div>
-              <div className="food-meta"><div><strong>45g</strong><span>Protein</span></div><div><strong>52g</strong><span>Carbs</span></div><div><strong>18g</strong><span>Fats</span></div></div>
-            </div>
-            <div className="floating-card progress-card"><span className="mini-icon"><Zap size={14} /></span><div><b>Consistency</b><strong>87%</strong></div><div className="progress"><i style={{width:"87%"}} /></div></div>
-            <div className="floating-card coach-card"><span className="coach-avatar">N</span><div><b>Coach Nina</b><span>You're doing amazing ✨</span></div><MessageCircle size={17} /></div>
-            <div className="hero-tag">NO RESTRICTIONS<br /><span>JUST BETTER CHOICES</span></div>
-          </div>
-        </section>
+  <Hero3D />
 
-        <section className="ticker">
-          <div>HOLISTIC NUTRITION <span>✦</span> REAL FOOD <span>✦</span> BETTER ENERGY <span>✦</span> LASTING HABITS <span>✦</span> HOLISTIC NUTRITION <span>✦</span> REAL FOOD <span>✦</span> BETTER ENERGY <span>✦</span></div>
-        </section>
+  <div className="hero-content">
+
+    <div className="eyebrow">
+      <span className="eyebrow-dot" />
+      PERSONAL NUTRITION, REIMAGINED
+    </div>
+
+    <h1>
+      Eat better.
+      <br />
+      <em>Feel electric.</em>
+    </h1>
+
+    <p className="hero-sub">
+      A beautifully simple nutrition system built around
+      <strong> your body, your culture, and your real life.</strong>
+    </p>
+
+    <div className="hero-actions">
+      <button className="primary-btn">
+        Build my nutrition plan
+        <ArrowRight size={18} />
+      </button>
+
+      <button className="play-btn">
+        <span>
+          <Play size={15} fill="currentColor" />
+        </span>
+        See how it works
+      </button>
+    </div>
+
+  </div>
+
+  <div className="hero-art">
+  <Hero3D />
+
+  <div className="hero-tag">
+    NO RESTRICTIONS
+    <br />
+    <span>JUST BETTER CHOICES</span>
+  </div>
+</div>
+
+</section>
 
         <section className="section method" id="method">
           <div className="section-heading">
-            <div><div className="eyebrow">THE NOURISH METHOD</div><h2>Less restriction.<br /><em>More transformation.</em></h2></div>
+            <div><div className="eyebrow">THE Yukthahara METHOD</div><h2>Less restriction.<br /><em>More transformation.</em></h2></div>
             <p>We don't believe in perfect diets. We believe in building a system that fits the life you're already living.</p>
           </div>
           <div className="method-grid">
@@ -160,7 +173,7 @@ function App() {
         <section className="section quote-section">
           <div className="quote-decoration">✦</div>
           <blockquote>“The goal isn't to eat perfectly.<br /><em>It's to make feeling good your default.</em>”</blockquote>
-          <span>— THE NOURISH PHILOSOPHY</span>
+          <span>— THE Yukthahara PHILOSOPHY</span>
         </section>
 
         <section className="section faq" id="faq">
@@ -177,10 +190,18 @@ function App() {
         </section>
       </main>
 
-      <footer><div className="footer-brand"><span className="brand-mark"><Leaf size={17}/></span><b>NOURISH.</b><p>Nutrition, made personal.</p></div><div className="footer-links"><button>Instagram</button><button>Privacy</button><button>Terms</button></div><span>© 2026 Nourish</span></footer>
+      <footer><div className="footer-brand"><span className="brand-mark"><Leaf size={17}/></span><b>Yukthahara.</b><p>Nutrition, made personal.</p></div><div className="footer-links"><button>Instagram</button><button>Privacy</button><button>Terms</button></div><span>© 2026 Yukthahara</span></footer>
 
-      {modal && <div className="modal-backdrop" onClick={()=>setModal(false)}><div className="modal" onClick={e=>e.stopPropagation()}><button className="modal-close" onClick={()=>setModal(false)}><X/></button><div className="eyebrow">LET'S GET STARTED</div><h2>Build your <em>better routine.</em></h2><p>Leave your details and a Nourish coach will help you choose the right program.</p><input placeholder="Your name"/><input placeholder="WhatsApp / phone number"/><select><option>{goal}</option><option>Improve digestion</option><option>Build strength</option><option>Better energy</option></select><button className="primary-btn wide" onClick={()=>{setModal(false);showToast("You're on the list — we'll be in touch!");}}>Request my plan <ArrowRight size={18}/></button><small>No spam. Just one helpful conversation.</small></div></div>}
+      {modal && <div className="modal-backdrop" onClick={()=>setModal(false)}><div className="modal" onClick={e=>e.stopPropagation()}><button className="modal-close" onClick={()=>setModal(false)}><X/></button><div className="eyebrow">LET'S GET STARTED</div><h2>Build your <em>better routine.</em></h2><p>Leave your details and a Yukthahara coach will help you choose the right program.</p><input placeholder="Your name"/><input placeholder="WhatsApp / phone number"/><select><option>{goal}</option><option>Improve digestion</option><option>Build strength</option><option>Better energy</option></select><button className="primary-btn wide" onClick={()=>{setModal(false);showToast("You're on the list — we'll be in touch!");}}>Request my plan <ArrowRight size={18}/></button><small>No spam. Just one helpful conversation.</small></div></div>}
       {toast && <div className="toast"><CircleCheck size={18}/>{toast}</div>}
+      <a className="whatsapp-float" href="https://wa.me/919381714978?text=Hi!%20I%20found%20Yukthahara%20and%20I'd%20like%20to%20know%20more%20about%20the%20nutrition%20programs." 
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Chat with us on WhatsApp"
+    >
+  <FaWhatsapp size={25} />
+  <span>Chat with us</span>
+</a>
     </div>
   );
 }
