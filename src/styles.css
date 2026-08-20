@@ -230,3 +230,66 @@
     transform-origin: center;
   }
 }
+
+.ambient-sparkles {
+  position: fixed;
+  inset: 0;
+
+  width: 100vw;
+  height: 100vh;
+
+  pointer-events: none;
+
+  z-index: 20;
+
+  opacity: 0.75;
+}
+
+.ambient-sparkles canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}
+.app {
+  position: relative;
+}
+
+.nav,
+main,
+footer {
+  position: relative;
+  z-index: 30;
+}
+
+/* Keep the fruit scene inside the introductory hero only. */
+.hero-background-3d {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+}
+
+.ambient-sparkles {
+  z-index: 20;
+  opacity: .92;
+}
+
+.hero {
+  background: linear-gradient(135deg, #f4f1e6 0%, #e8efd2 52%, #d8e2b8 100%);
+}
+
+.hero::after {
+  background: linear-gradient(
+    90deg,
+    rgba(244, 241, 230, 0.82) 0%,
+    rgba(234, 238, 214, 0.64) 35%,
+    rgba(221, 230, 186, 0.42) 70%,
+    rgba(207, 218, 165, 0.24) 100%
+  );
+}
+
+.method { background: #edf5cc; }
+.split-section { background: #e4efbc; }
+.calculator { background: #f0f6d6; }
+.plans { background: #e8f1c4; }
+.quote-section { background: #f3f8dc; }
+.faq { background: #e7f0bf; }
