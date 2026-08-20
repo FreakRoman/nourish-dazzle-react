@@ -380,3 +380,247 @@ footer {
     top: calc(100% + 8px);
   }
 }
+
+/* =========================================================
+   FINAL MOBILE TOUCH / CLICK FIX
+   ========================================================= */
+
+@media (max-width: 900px) {
+
+  /* ---------- PAGE LAYERS ---------- */
+
+  .app {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .noise,
+  .ambient-sparkles {
+    pointer-events: none !important;
+  }
+
+  .ambient-sparkles {
+    z-index: 1 !important;
+  }
+
+  .noise {
+    z-index: 2 !important;
+  }
+
+
+  /* ---------- HEADER ---------- */
+
+  .nav {
+    position: relative !important;
+    z-index: 1000 !important;
+    isolation: isolate;
+  }
+
+
+  .menu-btn {
+    position: relative !important;
+    z-index: 1002 !important;
+
+    pointer-events: auto !important;
+    touch-action: manipulation;
+
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+
+    width: 44px;
+    height: 44px;
+
+    padding: 0;
+  }
+
+
+  /* ---------- MOBILE DROPDOWN ---------- */
+
+  .nav-links.open {
+    position: absolute !important;
+
+    z-index: 1001 !important;
+
+    top: calc(100% + 8px) !important;
+    left: 5vw !important;
+    right: 5vw !important;
+
+    display: flex !important;
+
+    flex-direction: column !important;
+    align-items: stretch !important;
+
+    gap: 6px !important;
+
+    padding: 14px !important;
+
+    background: rgba(
+      246,
+      243,
+      236,
+      0.98
+    ) !important;
+
+    border: 1px solid rgba(
+      16,
+      37,
+      31,
+      0.12
+    );
+
+    border-radius: 20px;
+
+    box-shadow:
+      0 25px 60px
+      rgba(0, 0, 0, 0.18);
+
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    pointer-events: auto !important;
+  }
+
+
+  .nav-links.open button {
+    position: relative;
+
+    z-index: 1003;
+
+    width: 100%;
+
+    min-height: 46px;
+
+    pointer-events: auto !important;
+    touch-action: manipulation;
+  }
+
+
+  /* ---------- MAIN CONTENT ---------- */
+
+  main {
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+
+  /* ---------- HERO ---------- */
+
+  .hero {
+    position: relative;
+    z-index: 10;
+
+    isolation: isolate;
+  }
+
+
+  /*
+     The Three.js canvas is ONLY visual.
+     It must NEVER receive touch/click events.
+  */
+
+  .hero-background-3d,
+  .hero-background-3d canvas,
+  .hero-3d,
+  .hero-3d canvas {
+    pointer-events: none !important;
+  }
+
+
+  .hero::after {
+    pointer-events: none !important;
+  }
+
+
+  /* ---------- HERO CONTENT ---------- */
+
+  .hero-copy,
+  .hero-content,
+  .hero-actions,
+  .hero-actions button {
+    position: relative;
+
+    z-index: 50;
+
+    pointer-events: auto !important;
+    touch-action: manipulation;
+  }
+
+
+  /* ---------- ALL NORMAL BUTTONS ---------- */
+
+  main button,
+  main input,
+  main select,
+  main textarea,
+  main a {
+    pointer-events: auto !important;
+    touch-action: manipulation;
+  }
+
+
+  /* ---------- IMPORTANT BUTTONS ---------- */
+
+  .primary-btn,
+  .secondary-btn,
+  .play-btn,
+  .text-btn,
+  .calc-tabs button,
+  .plan-card button,
+  .faq-item button {
+    position: relative;
+
+    z-index: 100;
+
+    pointer-events: auto !important;
+
+    touch-action: manipulation;
+
+    -webkit-tap-highlight-color:
+      transparent;
+  }
+
+
+  /* ---------- MODAL ---------- */
+
+  .modal-backdrop {
+    z-index: 5000 !important;
+
+    pointer-events: auto !important;
+  }
+
+  .modal {
+    position: relative;
+
+    z-index: 5001 !important;
+
+    pointer-events: auto !important;
+  }
+
+  .modal button,
+  .modal input,
+  .modal select {
+    pointer-events: auto !important;
+
+    touch-action: manipulation;
+  }
+
+
+  /* ---------- TOAST ---------- */
+
+  .toast {
+    z-index: 6000 !important;
+
+    pointer-events: none !important;
+  }
+
+
+  /* ---------- WHATSAPP ---------- */
+
+  .whatsapp-float {
+    z-index: 4000 !important;
+
+    pointer-events: auto !important;
+    touch-action: manipulation;
+  }
+}
