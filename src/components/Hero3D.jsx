@@ -7,14 +7,17 @@ import {
 } from "@react-three/drei";
 import FloatingModel from "./FloatingModel";
 
+const BASE_URL = import.meta.env.BASE_URL || "/";
+const assetPath = (path) => `${BASE_URL}${path}`;
+
 const MODELS = {
-  avocado: "/models/food_avocado_01_1k.gltf/food_avocado_01_1k.gltf",
-  apple: "/models/food_apple_01_1k.gltf/food_apple_01_1k.gltf",
-  kiwi: "/models/food_kiwi_01_1k.gltf/food_kiwi_01_1k.gltf",
-  lime: "/models/food_lime_01_1k.gltf/food_lime_01_1k.gltf",
-  pomegranate: "/models/food_pomegranate_01_1k.gltf/food_pomegranate_01_1k.gltf",
-  celandine: "/models/celandine_01_1k.gltf/celandine_01_1k.gltf",
-  nettle: "/models/nettle_plant_1k.gltf/nettle_plant_1k.gltf",
+  avocado: assetPath("models/food_avocado_01_1k.gltf/food_avocado_01_1k.gltf"),
+  apple: assetPath("models/food_apple_01_1k.gltf/food_apple_01_1k.gltf"),
+  kiwi: assetPath("models/food_kiwi_01_1k.gltf/food_kiwi_01_1k.gltf"),
+  lime: assetPath("models/food_lime_01_1k.gltf/food_lime_01_1k.gltf"),
+  pomegranate: assetPath("models/food_pomegranate_01_1k.gltf/food_pomegranate_01_1k.gltf"),
+  celandine: assetPath("models/celandine_01_1k.gltf/celandine_01_1k.gltf"),
+  nettle: assetPath("models/nettle_plant_1k.gltf/nettle_plant_1k.gltf"),
 };
 
 function FruitScene() {
