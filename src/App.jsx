@@ -17,7 +17,7 @@ const faqs = [
   ["Do I need to count calories?", "Not necessarily. We use calorie and macro targets only when they make sense for your goal. The system is designed to make healthy choices easier, not turn every meal into math."],
   ["Can you build Indian meal plans?", "Absolutely. Plans can be built around South Indian, North Indian, vegetarian, non-vegetarian, vegan, and mixed preferences — including meals you already love."],
   ["How quickly will I see results?", "Most clients notice better energy and consistency within the first couple of weeks. Body-composition changes depend on your starting point, goal, habits, sleep, and consistency."],
-  ["Is this a crash diet?", "No. Nourish is built around sustainable habits, adequate nutrition, flexibility, and education so your results can continue after the coaching period."]
+  ["Is this a crash diet?", "No. Yukthaahara is built around sustainable habits, adequate nutrition, flexibility, and education so your results can continue after the coaching period."]
 ];
 
 function App() {
@@ -51,9 +51,9 @@ function App() {
       <AmbientSparkles />
       <div className="noise" />
       <header className="nav">
-        <button className="brand" onClick={() => nav("home")} aria-label="Nourish home">
+        <button className="brand" onClick={() => nav("home")} aria-label="Yukthaahara home">
           <span className="brand-mark"><Leaf size={18} /></span>
-          <span>NOURISH<span className="dot">.</span></span>
+          <span>Yukthaahara<span className="dot">.</span></span>
         </button>
         <nav className={menuOpen ? "nav-links open" : "nav-links"}>
           <button onClick={() => nav("method")}>Our method</button>
@@ -91,7 +91,7 @@ function App() {
 
         <section className="section method" id="method">
           <div className="section-heading">
-            <div><div className="eyebrow">THE NOURISH METHOD</div><h2>Less restriction.<br /><em>More transformation.</em></h2></div>
+            <div><div className="eyebrow">THE YUKTHAAHARA METHOD</div><h2>Less restriction.<br /><em>More transformation.</em></h2></div>
             <p>We don't believe in perfect diets. We believe in building a system that fits the life you're already living.</p>
           </div>
           <div className="method-grid">
@@ -145,7 +145,7 @@ function App() {
         <section className="section quote-section">
           <div className="quote-decoration">✦</div>
           <blockquote>“The goal isn't to eat perfectly.<br /><em>It's to make feeling good your default.</em>”</blockquote>
-          <span>— THE NOURISH PHILOSOPHY</span>
+          <span>— THE YUKTHAAHARA PHILOSOPHY</span>
         </section>
 
         <section className="section faq" id="faq">
@@ -162,9 +162,9 @@ function App() {
         </section>
       </main>
 
-      <footer><div className="footer-brand"><span className="brand-mark"><Leaf size={17}/></span><b>NOURISH.</b><p>Nutrition, made personal.</p></div><div className="footer-links"><button>Instagram</button><button>Privacy</button><button>Terms</button></div><span>© 2026 Nourish</span></footer>
+      <footer><div className="footer-brand"><span className="brand-mark"><Leaf size={17}/></span><b>Yukthaahara.</b><p>Nutrition, made personal.</p></div><div className="footer-links"><button>Instagram</button><button>Privacy</button><button>Terms</button></div><span>© 2026 Yukthaahara</span></footer>
 
-      {modal && <div className="modal-backdrop" onClick={()=>setModal(false)}><div className="modal" onClick={e=>e.stopPropagation()}><button className="modal-close" onClick={()=>setModal(false)}><X/></button><div className="eyebrow">LET'S GET STARTED</div><h2>Build your <em>better routine.</em></h2><p>Leave your details and a Nourish coach will help you choose the right program.</p><input placeholder="Your name"/><input placeholder="WhatsApp / phone number"/><select><option>{goal}</option><option>Improve digestion</option><option>Build strength</option><option>Better energy</option></select><button className="primary-btn wide" onClick={()=>{setModal(false);showToast("You're on the list — we'll be in touch!");}}>Request my plan <ArrowRight size={18}/></button><small>No spam. Just one helpful conversation.</small></div></div>}
+      {modal && <div className="modal-backdrop" onClick={()=>setModal(false)}><div className="modal" onClick={e=>e.stopPropagation()}><button className="modal-close" onClick={()=>setModal(false)}><X/></button><div className="eyebrow">LET'S GET STARTED</div><h2>Build your <em>better routine.</em></h2><p>Leave your details and a Yukthaahara coach will help you choose the right program.</p><input placeholder="Your name"/><input placeholder="WhatsApp / phone number"/><select><option>{goal}</option><option>Improve digestion</option><option>Build strength</option><option>Better energy</option></select><button className="primary-btn wide" onClick={()=>{setModal(false);showToast("You're on the list — we'll be in touch!");}}>Request my plan <ArrowRight size={18}/></button><small>No spam. Just one helpful conversation.</small></div></div>}
       {toast && <div className="toast"><CircleCheck size={18}/>{toast}</div>}
     </div>
   );

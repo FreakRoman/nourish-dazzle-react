@@ -314,3 +314,69 @@ footer {
 .cta-section {
   background: linear-gradient(135deg, #10251f 0%, #17362d 100%);
 }
+
+
+/* =========================================================
+   MOBILE MENU FIX
+   Keep the dropdown above the hero / 3D canvas.
+========================================================= */
+
+.nav { position: relative; z-index: 100; }
+.nav-links { position: relative; z-index: 101; }
+.hero { position: relative; z-index: 0; }
+.hero-background-3d { z-index: 0; }
+.ambient-sparkles { z-index: 20; }
+
+@media (max-width: 900px) {
+  .nav { position: relative; z-index: 100; }
+  .menu-btn { position: relative; z-index: 103; }
+
+  .nav-links.open {
+    position: absolute;
+    z-index: 102;
+    top: calc(100% + 10px);
+    left: 5vw;
+    right: 5vw;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 6px;
+    padding: 14px;
+    background: rgba(246, 243, 236, 0.98);
+    border: 1px solid rgba(16, 37, 31, 0.10);
+    border-radius: 20px;
+    box-shadow: 0 22px 55px rgba(16, 37, 31, 0.20), 0 4px 15px rgba(16, 37, 31, 0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+  }
+
+  .nav-links.open button:not(.mobile-cta) {
+    width: 100%;
+    padding: 13px 12px;
+    border-radius: 12px;
+    text-align: left;
+    background: transparent;
+  }
+
+  .nav-links.open button:not(.mobile-cta):hover {
+    background: rgba(200, 240, 106, 0.28);
+  }
+
+  .nav-links.open .mobile-cta {
+    width: 100%;
+    justify-content: center;
+    margin-top: 7px;
+    padding: 13px 16px;
+  }
+
+  main { position: relative; z-index: 1; }
+  .hero { position: relative; z-index: 0; }
+}
+
+@media (max-width: 560px) {
+  .nav-links.open {
+    left: 16px;
+    right: 16px;
+    top: calc(100% + 8px);
+  }
+}
