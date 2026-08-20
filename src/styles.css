@@ -274,7 +274,7 @@ footer {
 }
 
 .hero {
-  background: linear-gradient(135deg, #f4f1e6 0%, #e8efd2 52%, #d8e2b8 100%);
+  background: linear-gradient(135deg, #f4f1e6 0%, #ebf0d6 46%, #d9e3bd 100%);
 }
 
 .hero::after {
@@ -287,9 +287,30 @@ footer {
   );
 }
 
-.method { background: #edf5cc; }
-.split-section { background: #e4efbc; }
-.calculator { background: #f0f6d6; }
-.plans { background: #e8f1c4; }
-.quote-section { background: #f3f8dc; }
-.faq { background: #e7f0bf; }
+.method {
+  background: linear-gradient(180deg, #f6f1e6 0%, #edf2d9 100%);
+}
+
+.split-section {
+  background: linear-gradient(135deg, #edf2d8 0%, #e1e8c4 100%);
+}
+
+.calculator {
+  background: linear-gradient(135deg, #f3f6df 0%, #e6edc9 100%);
+}
+
+.plans {
+  background: linear-gradient(180deg, #ecf2cf 0%, #dfe8bc 100%);
+}
+
+.quote-section {
+  background: linear-gradient(180deg, #f7f4e7 0%, #eef2d9 100%);
+}
+
+.faq {
+  background: linear-gradient(135deg, #e9f0c8 0%, #dce6b3 100%);
+}
+
+.cta-section {
+  background: linear-gradient(135deg, #10251f 0%, #17362d 100%);
+}
