@@ -1,0 +1,1220 @@
+/* =========================================================
+   YUKTHAAHARA INTRO
+========================================================= */
+
+.yukthaahara-intro {
+  position: fixed;
+  inset: 0;
+
+  z-index: 99999;
+
+  display: grid;
+  place-items: center;
+
+  overflow: hidden;
+
+  background:
+    radial-gradient(
+      circle at 50% 48%,
+      #f8f5d8 0%,
+      #e7edc9 42%,
+      #c5d395 100%
+    );
+
+  animation:
+    introAppear
+    0.7s
+    ease-out
+    both;
+
+  pointer-events: none;
+}
+
+
+/* =========================================================
+   SOFT CENTRAL AURA
+========================================================= */
+
+.intro-aura {
+  position: absolute;
+
+  width: 480px;
+  height: 480px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      circle,
+      rgba(236, 245, 186, 0.75),
+      rgba(236, 245, 186, 0.15) 45%,
+      transparent 72%
+    );
+
+  filter: blur(16px);
+
+  animation:
+    auraPulse
+    2.2s
+    ease-in-out
+    infinite;
+}
+
+
+/* =========================================================
+   MAIN SCENE
+========================================================= */
+
+.intro-leaf-scene {
+  position: relative;
+
+  width: 510px;
+  height: 330px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+}
+
+
+/* =========================================================
+   MAIN LEAVES
+========================================================= */
+
+.leaf {
+  position: absolute;
+
+  top: 72px;
+
+  width: 185px;
+  height: 105px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #779842,
+      #4e7136 70%,
+      #395d2d
+    );
+
+  box-shadow:
+    0 18px 45px
+    rgba(
+      46,
+      82,
+      38,
+      0.2
+    );
+
+  overflow: hidden;
+
+  z-index: 4;
+}
+
+
+/* =========================================================
+   LEFT LEAF
+========================================================= */
+
+.leaf-left {
+  left: 91px;
+
+  border-radius:
+    100% 0 100% 0;
+
+  transform-origin:
+    100% 100%;
+
+  transform:
+    rotate(-19deg)
+    scaleX(0.1);
+
+  opacity: 0;
+
+  animation:
+    leafLeftOpen
+    0.95s
+    cubic-bezier(
+      .22,
+      .75,
+      .24,
+      1
+    )
+    0.35s
+    forwards;
+}
+
+
+/* =========================================================
+   RIGHT LEAF
+========================================================= */
+
+.leaf-right {
+  right: 91px;
+
+  border-radius:
+    0 100% 0 100%;
+
+  transform-origin:
+    0 100%;
+
+  transform:
+    rotate(19deg)
+    scaleX(0.1);
+
+  opacity: 0;
+
+  animation:
+    leafRightOpen
+    0.95s
+    cubic-bezier(
+      .22,
+      .75,
+      .24,
+      1
+    )
+    0.35s
+    forwards;
+}
+
+
+/* =========================================================
+   LEAF VEINS
+========================================================= */
+
+.leaf-vein {
+  position: absolute;
+
+  display: block;
+
+  height: 1px;
+
+  background:
+    rgba(
+      220,
+      238,
+      164,
+      0.42
+    );
+
+  transform-origin:
+    left center;
+}
+
+
+.vein-main {
+  width: 145px;
+
+  left: 22px;
+  top: 59px;
+
+  transform:
+    rotate(-4deg);
+}
+
+
+.vein-one {
+  width: 63px;
+
+  left: 45px;
+  top: 43px;
+
+  transform:
+    rotate(-28deg);
+}
+
+
+.vein-two {
+  width: 55px;
+
+  left: 64px;
+  top: 72px;
+
+  transform:
+    rotate(25deg);
+}
+
+
+.vein-three {
+  width: 42px;
+
+  left: 95px;
+  top: 36px;
+
+  transform:
+    rotate(-40deg);
+}
+
+
+/* =========================================================
+   FULL PLANT STEM
+========================================================= */
+
+.plant-stem {
+  position: absolute;
+
+  left: 50%;
+
+  bottom: 5px;
+
+  width: 9px;
+
+  height: 205px;
+
+  transform:
+    translateX(-50%)
+    scaleY(0);
+
+  transform-origin:
+    bottom center;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #294f29 0%,
+      #476e32 45%,
+      #658947 60%,
+      #31582b 100%
+    );
+
+  box-shadow:
+    4px 0 10px
+    rgba(
+      38,
+      75,
+      34,
+      0.16
+    );
+
+  z-index: 3;
+
+  animation:
+    stemGrow
+    0.95s
+    cubic-bezier(
+      .22,
+      .75,
+      .24,
+      1
+    )
+    0.35s
+    forwards;
+}
+
+
+/* =========================================================
+   STEM HIGHLIGHT
+========================================================= */
+
+.stem-highlight {
+  position: absolute;
+
+  left: 2px;
+
+  top: 5px;
+
+  width: 2px;
+
+  height: 185px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      to bottom,
+      rgba(
+        196,
+        222,
+        145,
+        0.75
+      ),
+      rgba(
+        196,
+        222,
+        145,
+        0.08
+      )
+    );
+
+  opacity: 0.7;
+}
+
+
+/* =========================================================
+   MAIN STEM BRANCHES
+========================================================= */
+
+.stem-branch {
+  position: absolute;
+
+  height: 5px;
+
+  border-radius: 999px;
+
+  background:
+    linear-gradient(
+      90deg,
+      #3b632f,
+      #52793a
+    );
+
+  transform-origin:
+    left center;
+}
+
+
+/* LEFT MAIN BRANCH */
+
+.branch-left {
+  left: 2px;
+
+  top: 72px;
+
+  width: 72px;
+
+  transform:
+    rotate(-27deg)
+    scaleX(0);
+
+  animation:
+    branchLeftGrow
+    0.65s
+    ease-out
+    0.95s
+    forwards;
+}
+
+
+/* RIGHT MAIN BRANCH */
+
+.branch-right {
+  left: 4px;
+
+  top: 101px;
+
+  width: 72px;
+
+  transform:
+    rotate(-153deg)
+    scaleX(0);
+
+  animation:
+    branchRightGrow
+    0.65s
+    ease-out
+    1s
+    forwards;
+}
+
+
+/* =========================================================
+   SECONDARY BRANCHES
+========================================================= */
+
+.branch-left-small {
+
+  left: 2px;
+
+  top: 131px;
+
+  width: 52px;
+
+  transform:
+    rotate(-28deg)
+    scaleX(0);
+
+  animation:
+    branchLeftSmallGrow
+    0.55s
+    ease-out
+    1.08s
+    forwards;
+}
+
+
+.branch-right-small {
+
+  left: 3px;
+
+  top: 155px;
+
+  width: 50px;
+
+  transform:
+    rotate(-151deg)
+    scaleX(0);
+
+  animation:
+    branchRightSmallGrow
+    0.55s
+    ease-out
+    1.12s
+    forwards;
+}
+
+
+/* =========================================================
+   STEM TIP
+========================================================= */
+
+.stem-tip {
+
+  position: absolute;
+
+  top: -6px;
+
+  left: 50%;
+
+  width: 12px;
+
+  height: 21px;
+
+  transform:
+    translateX(-50%)
+    rotate(15deg);
+
+  border-radius:
+    80% 20% 70% 30%;
+
+  background:
+    linear-gradient(
+      135deg,
+      #7fa450,
+      #496f35
+    );
+
+}
+
+
+/* =========================================================
+   BASE / ROOT TAPER
+========================================================= */
+
+.plant-stem::after {
+
+  content: "";
+
+  position: absolute;
+
+  left: 50%;
+
+  bottom: -4px;
+
+  width: 22px;
+
+  height: 12px;
+
+  transform:
+    translateX(-50%);
+
+  border-radius:
+    70% 70% 40% 40%;
+
+  background:
+    linear-gradient(
+      180deg,
+      #3c632f,
+      #294e2a
+    );
+
+}
+
+
+/* =========================================================
+   LOGO TEXT
+========================================================= */
+
+.brand-word {
+
+  position: relative;
+
+  z-index: 7;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  color: #123323;
+
+  font-family:
+    "Playfair Display",
+    Georgia,
+    serif;
+
+  font-size: 52px;
+
+  font-weight: 400;
+
+  letter-spacing: -2.5px;
+
+  opacity: 0;
+
+  transform:
+    translateY(18px)
+    scale(0.94);
+
+  animation:
+    wordReveal
+    0.9s
+    cubic-bezier(
+      .2,
+      .8,
+      .2,
+      1
+    )
+    0.95s
+    forwards;
+}
+
+
+/* =========================================================
+   LETTER ANIMATION
+========================================================= */
+
+.brand-word span {
+
+  display: inline-block;
+
+  opacity: 0;
+
+  transform:
+    translateY(14px);
+
+  animation:
+    letterReveal
+    0.65s
+    ease-out
+    forwards;
+}
+
+
+.brand-word span:nth-child(1) {
+  animation-delay: 1s;
+}
+
+.brand-word span:nth-child(2) {
+  animation-delay: 1.04s;
+}
+
+.brand-word span:nth-child(3) {
+  animation-delay: 1.08s;
+}
+
+.brand-word span:nth-child(4) {
+  animation-delay: 1.12s;
+}
+
+.brand-word span:nth-child(5) {
+  animation-delay: 1.16s;
+}
+
+.brand-word span:nth-child(6) {
+  animation-delay: 1.20s;
+}
+
+.brand-word span:nth-child(7) {
+  animation-delay: 1.24s;
+}
+
+.brand-word span:nth-child(8) {
+  animation-delay: 1.28s;
+}
+
+.brand-word span:nth-child(9) {
+  animation-delay: 1.32s;
+}
+
+.brand-word span:nth-child(10) {
+  animation-delay: 1.36s;
+}
+
+.brand-word span:nth-child(11) {
+  animation-delay: 1.40s;
+}
+
+
+/* =========================================================
+   LEAF GLOW
+========================================================= */
+
+.leaf-glow {
+
+  position: absolute;
+
+  width: 250px;
+
+  height: 120px;
+
+  border-radius: 50%;
+
+  background:
+    radial-gradient(
+      ellipse,
+      rgba(
+        224,
+        244,
+        155,
+        0.6
+      ),
+      transparent 72%
+    );
+
+  filter: blur(12px);
+
+  opacity: 0;
+
+  z-index: 1;
+
+  animation:
+    leafGlow
+    1s
+    ease-out
+    0.8s
+    forwards;
+}
+
+
+/* =========================================================
+   CLOSING
+========================================================= */
+
+.intro-closing {
+
+  animation:
+    introClose
+    0.65s
+    cubic-bezier(
+      .65,
+      0,
+      .35,
+      1
+    )
+    forwards;
+
+}
+
+
+/* =========================================================
+   INTRO APPEAR
+========================================================= */
+
+@keyframes introAppear {
+
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+
+}
+
+
+/* =========================================================
+   LEFT LEAF
+========================================================= */
+
+@keyframes leafLeftOpen {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      rotate(-19deg)
+      scaleX(0.05);
+
+  }
+
+  50% {
+
+    opacity: 1;
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      rotate(-19deg)
+      scaleX(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   RIGHT LEAF
+========================================================= */
+
+@keyframes leafRightOpen {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      rotate(19deg)
+      scaleX(0.05);
+
+  }
+
+  50% {
+
+    opacity: 1;
+
+  }
+
+  100% {
+
+    opacity: 1;
+
+    transform:
+      rotate(19deg)
+      scaleX(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   STEM
+========================================================= */
+
+@keyframes stemGrow {
+
+  from {
+
+    transform:
+      translateX(-50%)
+      scaleY(0);
+
+  }
+
+  to {
+
+    transform:
+      translateX(-50%)
+      scaleY(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   BRANCH LEFT
+========================================================= */
+
+@keyframes branchLeftGrow {
+
+  from {
+
+    transform:
+      rotate(-27deg)
+      scaleX(0);
+
+  }
+
+  to {
+
+    transform:
+      rotate(-27deg)
+      scaleX(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   BRANCH RIGHT
+========================================================= */
+
+@keyframes branchRightGrow {
+
+  from {
+
+    transform:
+      rotate(-153deg)
+      scaleX(0);
+
+  }
+
+  to {
+
+    transform:
+      rotate(-153deg)
+      scaleX(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   SMALL LEFT BRANCH
+========================================================= */
+
+@keyframes branchLeftSmallGrow {
+
+  from {
+
+    transform:
+      rotate(-28deg)
+      scaleX(0);
+
+  }
+
+  to {
+
+    transform:
+      rotate(-28deg)
+      scaleX(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   SMALL RIGHT BRANCH
+========================================================= */
+
+@keyframes branchRightSmallGrow {
+
+  from {
+
+    transform:
+      rotate(-151deg)
+      scaleX(0);
+
+  }
+
+  to {
+
+    transform:
+      rotate(-151deg)
+      scaleX(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   BRAND REVEAL
+========================================================= */
+
+@keyframes wordReveal {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(20px)
+      scale(0.92);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0)
+      scale(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   LETTER REVEAL
+========================================================= */
+
+@keyframes letterReveal {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      translateY(14px);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      translateY(0);
+
+  }
+
+}
+
+
+/* =========================================================
+   GLOW
+========================================================= */
+
+@keyframes leafGlow {
+
+  from {
+
+    opacity: 0;
+
+    transform:
+      scale(0.7);
+
+  }
+
+  to {
+
+    opacity: 1;
+
+    transform:
+      scale(1);
+
+  }
+
+}
+
+
+/* =========================================================
+   AURA
+========================================================= */
+
+@keyframes auraPulse {
+
+  0%,
+  100% {
+
+    transform:
+      scale(0.96);
+
+    opacity: 0.72;
+
+  }
+
+  50% {
+
+    transform:
+      scale(1.05);
+
+    opacity: 1;
+
+  }
+
+}
+
+
+/* =========================================================
+   INTRO CLOSE
+========================================================= */
+
+@keyframes introClose {
+
+  from {
+
+    opacity: 1;
+
+    transform:
+      scale(1);
+
+  }
+
+  to {
+
+    opacity: 0;
+
+    transform:
+      scale(1.035);
+
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 600px) {
+
+  .intro-leaf-scene {
+
+    width: 330px;
+
+    height: 290px;
+
+  }
+
+
+  /* leaves */
+
+  .leaf {
+
+    top: 70px;
+
+    width: 135px;
+
+    height: 82px;
+
+  }
+
+
+  .leaf-left {
+
+    left: 42px;
+
+  }
+
+
+  .leaf-right {
+
+    right: 42px;
+
+  }
+
+
+  /* stem */
+
+  .plant-stem {
+
+    width: 7px;
+
+    height: 170px;
+
+    bottom: 8px;
+
+  }
+
+
+  .stem-highlight {
+
+    height: 150px;
+
+  }
+
+
+  /* branches */
+
+  .branch-left,
+  .branch-right {
+
+    width: 58px;
+
+  }
+
+
+  .branch-left-small,
+  .branch-right-small {
+
+    width: 42px;
+
+  }
+
+
+  /* tip */
+
+  .stem-tip {
+
+    width: 10px;
+
+    height: 18px;
+
+  }
+
+
+  /* logo */
+
+  .brand-word {
+
+    font-size: 32px;
+
+    letter-spacing: -1.5px;
+
+  }
+
+
+  /* aura */
+
+  .intro-aura {
+
+    width: 350px;
+
+    height: 350px;
+
+  }
+
+
+  /* glow */
+
+  .leaf-glow {
+
+    width: 190px;
+
+    height: 100px;
+
+  }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONES
+========================================================= */
+
+@media (max-width: 380px) {
+
+  .intro-leaf-scene {
+
+    transform:
+      scale(0.9);
+
+  }
+
+}
+
+
+/* =========================================================
+   ACCESSIBILITY
+========================================================= */
+
+@media (
+  prefers-reduced-motion: reduce
+) {
+
+  .yukthaahara-intro,
+  .leaf,
+  .plant-stem,
+  .brand-word,
+  .brand-word span,
+  .leaf-glow,
+  .intro-aura,
+  .stem-branch {
+
+    animation-duration:
+      0.01ms !important;
+
+    animation-iteration-count:
+      1 !important;
+
+  }
+
+}

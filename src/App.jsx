@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import {
   ArrowRight, Check, ChevronDown, CircleCheck, Clock3, Leaf,
   Menu, MessageCircle, Play, Plus, Sparkles, Star, X
@@ -6,6 +7,8 @@ import {
 import Hero3D from "./components/Hero3D";
 import AmbientSparkles from "./components/AmbientSparkles";
 import "./styles.css";
+import YukthaaharaIntro
+  from "./components/YukthaaharaIntro";
 
 const plans = [
   { name: "Reset", price: "₹1,999", accent: "sage", desc: "A focused 14-day nutrition reset.", features: ["Personal nutrition audit", "7-day meal blueprint", "Grocery guide", "Two check-ins"] },
@@ -29,6 +32,7 @@ function App() {
   const [weight, setWeight] = useState("");
   const [activity, setActivity] = useState("Moderate");
   const [toast, setToast] = useState("");
+  const navigate = useNavigate();
 
   const bmi = useMemo(() => {
     const h = Number(height) / 100;
@@ -48,6 +52,7 @@ function App() {
 
   return (
     <div className="app">
+      <YukthaaharaIntro />
       <AmbientSparkles />
       <div className="noise" />
       <header className="nav">
@@ -60,6 +65,9 @@ function App() {
           <button onClick={() => nav("plans")}>Programs</button>
           <button onClick={() => nav("stories")}>Stories</button>
           <button onClick={() => nav("faq")}>FAQ</button>
+          <button className="login-nav-btn" onClick={() => navigate("/login")}>
+            Login
+          </button>
           <button className="mobile-cta" onClick={() => setModal(true)}>Start my plan <ArrowRight size={16} /></button>
         </nav>
         <button className="nav-cta" onClick={() => setModal(true)}>Start my plan <ArrowRight size={16} /></button>
