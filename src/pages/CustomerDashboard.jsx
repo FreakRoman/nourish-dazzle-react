@@ -1,92 +1,26 @@
-import {
-  useAuth,
-} from "../context/AuthContext";
+import React, { useMemo, useState } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
+import { Activity, ArrowRight, Check, CheckCircle2, Droplets, Footprints, Flame, MessageCircle, Send, Target, Trophy, Utensils } from "lucide-react";
+import PortalShell from "../components/PortalShell.jsx";
+import { useAuth } from "../context/AuthContext.jsx";
+import { useAppData } from "../context/AppDataContext.jsx";
 
-
-export default function CustomerDashboard() {
-
-  const {
-    currentUser,
-    logout,
-  } = useAuth();
-
-
-  return (
-
-    <div className="dashboard-page">
-
-      <header className="dashboard-header">
-
-        <div className="dashboard-brand">
-          ◒ Nourish
-        </div>
-
-        <div>
-
-          <span>
-            {currentUser.name}
-          </span>
-
-          <button onClick={logout}>
-            Logout
-          </button>
-
-        </div>
-
-      </header>
-
-
-      <main className="dashboard-content">
-
-        <span className="dashboard-eyebrow">
-          MY NUTRITION
-        </span>
-
-        <h1>
-          Good morning,
-          <em> {currentUser.name}</em> 🌿
-        </h1>
-
-
-        <div className="customer-progress">
-
-          <div>
-            <span>
-              Current Weight
-            </span>
-
-            <strong>
-              78 kg
-            </strong>
-          </div>
-
-
-          <div>
-            <span>
-              Goal
-            </span>
-
-            <strong>
-              70 kg
-            </strong>
-          </div>
-
-
-          <div>
-            <span>
-              Progress
-            </span>
-
-            <strong>
-              72%
-            </strong>
-          </div>
-
-        </div>
-
-      </main>
-
-    </div>
-
-  );
+export default function CustomerDashboard(){
+ const {currentUser}=useAuth(); const navigate = useNavigate(); const {data,getCustomer,getCoach,getCustomerPlan,completedMeals,toggleMeal,logActivity,sendMessage}=useAppData(); const location=useLocation();
+ const customer=getCustomer(currentUser.customerId)||data.customers[0]; const coach=getCoach(customer.coachId); const plan=getCustomerPlan(customer.id); const meals=data.meals; const done=completedMeals(customer.id); const [height,setHeight]=useState(customer.height); const [weight,setWeight]=useState(customer.weight); const [water,setWater]=useState(customer.water); const [steps,setSteps]=useState(customer.steps); const [workout,setWorkout]=useState(customer.workout); const [message,setMessage]=useState("");
+ const path=location.pathname; const title=path==="/customer/plan"?"Your nutrition plan":path==="/customer/activity"?"Today's activity":path==="/customer/progress"?"Your progress":path==="/customer/coach"?"Your coach":`Good morning, ${customer.name} 🌿`;
+ const bmi=useMemo(()=>Number(height)>0&&Number(weight)>0?(Number(weight)/((Number(height)/100)**2)).toFixed(1):null,[height,weight]);
+ const page=path;
+ if(page==="/customer/plan") return <PortalShell title={title} subtitle="Your current plan, meals and daily targets."><PlanView customer={customer} plan={plan} meals={meals} done={done} toggleMeal={toggleMeal}/></PortalShell>;
+ if(page==="/customer/activity") return <PortalShell title={title} subtitle="Update the basics that keep your plan moving."><ActivityView customer={customer} height={height} setHeight={setHeight} weight={weight} setWeight={setWeight} water={water} setWater={setWater} steps={steps} setSteps={setSteps} workout={workout} setWorkout={setWorkout} bmi={bmi} onSave={()=>logActivity(customer.id,{weight:Number(weight),water:Number(water),steps:Number(steps),workout:workout,calories:1800,note:"Updated from customer portal."})}/></PortalShell>;
+ if(page==="/customer/progress") return <PortalShell title={title} subtitle="Small wins add up. Here's your latest snapshot."><ProgressView customer={customer} data={data}/></PortalShell>;
+ if(page==="/customer/coach") return <PortalShell title={title} subtitle="Stay connected with the person guiding your plan."><CoachView customer={customer} coach={coach} data={data} message={message} setMessage={setMessage} sendMessage={sendMessage}/></PortalShell>;
+ return <PortalShell title={title} subtitle="A simple daily view of your nutrition journey."><div className="portal-stat-grid"><Stat icon={Flame} value={`${customer.streak}d`} label="Current streak"/><Stat icon={Droplets} value={`${customer.water}/${customer.waterGoal}`} label="Water today"/><Stat icon={Footprints} value={customer.steps.toLocaleString()} label="Steps"/><Stat icon={Target} value={`${customer.progress}%`} label="Goal progress"/></div><div className="customer-home-grid"><section className="portal-panel"><div className="panel-head"><div><span className="panel-kicker">TODAY</span><h2>Nutrition checklist</h2></div><span className="completion-pill">{done.length}/{meals.length} complete</span></div>{meals.map(m=><button key={m.id} className={`meal-item ${done.includes(m.id)?"done":""}`} onClick={()=>toggleMeal(customer.id,m.id)}><span className="meal-check">{done.includes(m.id)?<Check size={15}/>:<Utensils size={14}/>}</span><div><strong>{m.type}</strong><p>{m.name}</p><small>{m.calories} kcal · {m.time}</small></div><ArrowRight size={16}/></button>)}</section><section className="portal-panel"><span className="panel-kicker">YOUR COACH</span><div className="coach-hero"><span>{coach?.name?.slice(0,1)}</span><div><h3>{coach?.name}</h3><p>{coach?.specialization}</p><b>{coach?.rating}★ client rating</b></div></div><div className="coach-tip">“Consistency beats perfection. Let's make today easy.”</div><button className="primary-btn wide" onClick={()=>navigate("/customer/coach")}><MessageCircle size={16}/> Message coach</button></section></div></PortalShell>
 }
+function Stat({icon:Icon,value,label}){return <div className="portal-stat"><span className="stat-icon"><Icon size={18}/></span><div><strong>{value}</strong><small>{label}</small></div></div>}
+function PlanView({customer,plan,meals,done,toggleMeal}){return <div className="portal-grid-2"><section className="portal-panel"><span className="panel-kicker">ACTIVE PLAN</span><h2>{plan?.name||"Personalized Plan"}</h2><div className="macro-grid big"><span><b>{plan?.calories||2000}</b><small>daily kcal</small></span><span><b>{plan?.protein||120}g</b><small>protein</small></span><span><b>{plan?.carbs||220}g</b><small>carbs</small></span><span><b>{plan?.fat||60}g</b><small>fat</small></span></div><div className="goal-line"><span>Goal progress</span><strong>{customer.progress}%</strong></div><div className="big-progress"><i style={{width:`${customer.progress}%`}}/></div></section><section className="portal-panel"><div className="panel-head"><div><span className="panel-kicker">MEALS</span><h2>Today's plan</h2></div></div>{meals.map(m=><button key={m.id} className={`meal-item ${done.includes(m.id)?"done":""}`} onClick={()=>toggleMeal(customer.id,m.id)}><span className="meal-check">{done.includes(m.id)?<Check/>:<Utensils/>}</span><div><strong>{m.type}</strong><p>{m.name}</p><small>{m.calories} kcal · {m.protein}g protein</small></div></button>)}</section></div>}
+function ActivityView({customer,height,setHeight,weight,setWeight,water,setWater,steps,setSteps,workout,setWorkout,bmi,onSave}){return <div className="activity-layout"><section className="portal-panel"><span className="panel-kicker">BODY CHECK-IN</span><h2>Update today's numbers</h2><div className="activity-form"><label>Height (cm)<input value={height} onChange={e=>setHeight(e.target.value)} type="number"/></label><label>Weight (kg)<input value={weight} onChange={e=>setWeight(e.target.value)} type="number"/></label><label>Water glasses<input value={water} onChange={e=>setWater(e.target.value)} type="number" min="0" max="20"/></label><label>Steps<input value={steps} onChange={e=>setSteps(e.target.value)} type="number"/></label></div><div className="bmi-card"><span>Estimated BMI</span><strong>{bmi||"—"}</strong></div><button className="primary-btn" onClick={onSave}><CheckCircle2 size={16}/> Save today's check-in</button></section><section className="portal-panel"><span className="panel-kicker">MOVEMENT</span><h2>Workout today?</h2><button className={`workout-toggle ${workout?"done":""}`} onClick={()=>setWorkout(v=>!v)}><span>{workout?<Check/>:<DumbbellIcon/>}</span><div><strong>{workout?"Completed":"Not completed"}</strong><small>Tap to update</small></div></button><div className="activity-meters"><Meter icon={Droplets} value={water} goal={customer.waterGoal} label="Water"/><Meter icon={Footprints} value={steps} goal={customer.stepsGoal} label="Steps"/></div></section></div>}
+function DumbbellIcon(){return <span style={{fontSize:18}}>🏋️</span>}
+function Meter({icon:Icon,value,goal,label}){const pct=Math.min(100,Math.round((Number(value)/Number(goal))*100));return <div className="meter"><div><span><Icon size={15}/>{label}</span><b>{value}/{goal}</b></div><div className="meter-track"><i style={{width:`${pct}%`}}/></div></div>}
+function ProgressView({customer,data}){const entries=data.activities.filter(a=>a.customerId===customer.id).slice(0,8).reverse();return <div className="progress-layout"><section className="portal-panel"><div className="panel-head"><div><span className="panel-kicker">WEIGHT JOURNEY</span><h2>{customer.weight} kg now · {customer.targetWeight} kg goal</h2></div><span className="completion-pill">{customer.progress}% complete</span></div><div className="weight-chart">{entries.length===0?<p>No check-ins yet.</p>:entries.map((e,i)=><div key={e.id} className="weight-point" style={{height:`${50+((entries[0].weight-e.weight)*45)}%`}}><span>{e.weight}</span><i/><small>{e.date.slice(5)}</small></div>)}</div></section><section className="portal-panel"><span className="panel-kicker">WINS</span><div className="win-list"><div><Trophy/><span><strong>{customer.streak} day streak</strong><small>Keep the chain going.</small></span></div><div><Activity/><span><strong>{customer.steps.toLocaleString()} steps today</strong><small>Movement is momentum.</small></span></div><div><Droplets/><span><strong>{customer.water}/{customer.waterGoal} glasses</strong><small>You're nearly there.</small></span></div></div></section></div>}
+function CoachView({customer,coach,data,message,setMessage,sendMessage}){const messages=data.messages.filter(m=>[m.senderId,m.receiverId].includes(customer.userId)&&[m.senderId,m.receiverId].includes(coach?.userId));return <div className="portal-grid-2"><section className="portal-panel"><div className="coach-hero big"><span>{coach?.name?.slice(0,1)}</span><div><h2>{coach?.name}</h2><p>{coach?.specialization}</p><b>{coach?.rating}★</b></div></div><div className="coach-tip">Your coach is here to help you adapt the plan to real life.</div></section><section className="portal-panel chat-panel"><div className="chat-body compact">{messages.map(m=><div className={`bubble ${m.senderId===customer.userId?"mine":""}`} key={m.id}>{m.text}<small>{m.timestamp}</small></div>)}</div><div className="chat-input"><input value={message} onChange={e=>setMessage(e.target.value)} placeholder="Message your coach..."/><button onClick={()=>{sendMessage(customer.userId,coach.userId,message);setMessage("")}}><Send size={16}/></button></div></section></div>}

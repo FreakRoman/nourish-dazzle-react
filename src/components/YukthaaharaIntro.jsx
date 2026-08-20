@@ -6,48 +6,27 @@ export default function YukthaaharaIntro() {
   const [closing, setClosing] = useState(false);
 
   useEffect(() => {
-    const closeTimer = setTimeout(() => {
-      setClosing(true);
-    }, 1800);
-
-    const removeTimer = setTimeout(() => {
-      setVisible(false);
-    }, 2450);
-
+    const closeTimer = window.setTimeout(() => setClosing(true), 1850);
+    const removeTimer = window.setTimeout(() => setVisible(false), 2500);
     return () => {
-      clearTimeout(closeTimer);
-      clearTimeout(removeTimer);
+      window.clearTimeout(closeTimer);
+      window.clearTimeout(removeTimer);
     };
   }, []);
 
-  if (!visible) {
-    return null;
-  }
+  if (!visible) return null;
 
   return (
-    <div
-      className={`yukthaahara-intro ${
-        closing ? "intro-closing" : ""
-      }`}
-      aria-label="Yukthaahara"
-    >
-                <div className="brand-word">
-          <span>Y</span>
-          <span>u</span>
-          <span>k</span>
-          <span>t</span>
-          <span>h</span>
-          <span>a</span>
-          <span>a</span>
-          <span>h</span>
-          <span>a</span>
-          <span>r</span>
-          <span>a</span>
-        </div>
+    <div className={`yukthaahara-intro ${closing ? "intro-closing" : ""}`} aria-label="Yukthaahara">
       <div className="intro-aura" />
 
-      <div className="intro-leaf-scene">
+      <div className="brand-word" aria-hidden="true">
+        {"Yukthaahara".split("").map((letter, index) => (
+          <span key={`${letter}-${index}`}>{letter}</span>
+        ))}
+      </div>
 
+      <div className="intro-leaf-scene" aria-hidden="true">
         <div className="leaf-glow" />
 
         <div className="leaf leaf-left">
@@ -65,10 +44,12 @@ export default function YukthaaharaIntro() {
         </div>
 
         <div className="plant-stem">
-
-            <span className="stem-highlight" />
-            <span className="stem-tip" />
-
+          <span className="stem-highlight" />
+          <span className="stem-branch branch-left" />
+          <span className="stem-branch branch-right" />
+          <span className="stem-branch branch-left-small" />
+          <span className="stem-branch branch-right-small" />
+          <span className="stem-tip" />
         </div>
       </div>
     </div>
